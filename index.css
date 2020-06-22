@@ -10,7 +10,7 @@ tr{
 .row td{
   width:300px;
 }
-.top{
+#leaderboard .top{
   background-color:rgb(108, 255, 108);
 }
 td, th {
@@ -23,14 +23,14 @@ tr:nth-child(even) {
 }
 p{
   width:100px;
-  background-color:#238478;
+  background-color:#34c5b4;
   padding:1rem;
   margin:1rem auto;
   cursor: pointer;
-  transition: .3s ease-in-out;
+  transition: .2s ease-in-out;
 }
 p:hover{
-  background-color:#33dbc8;
+  background-color:#39eed9;
 }
 .lds-dual-ring {
   display: none;
@@ -58,4 +58,7 @@ p:hover{
   100% {
     transform: rotate(360deg);
   }
+}
+a{
+  text-decoration: none;
 }

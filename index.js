@@ -53,7 +53,7 @@ function display(arr) {
   <td>${intern['FULL NAME']}</td>
   <td>${intern.USERNAME}</td>
   <td>${intern['TOTAL POINTS']}</td>
-  <td>Share</td>
+  <td><a href= "https://twitter.com/home">Share</a></td>
   </tr>`;
   });
   loader.style.display = 'none';
