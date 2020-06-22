@@ -29,6 +29,7 @@ fetch('/leaderdata')
     // Work with JSON data here
     interns = data
     display(interns)
+    topStyle();
     console.log(data);
     
   })
