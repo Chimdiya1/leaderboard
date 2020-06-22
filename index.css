@@ -1,0 +1,22 @@
+body{
+  text-align:center;
+}
+tr{
+  width:100px;
+ 
+  margin:270px;
+  border:1px solid black;
+}
+.row td{
+  width:300px;
+  border:1px solid black;
+}
+.top{
+  background-color:green;
+}
+p{
+  width:100px;
+  background-color:#238478;
+  padding:1rem;
+  margin:1rem auto;
+}
