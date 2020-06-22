@@ -22,6 +22,7 @@ var interns = [
 ];
 fetch('/leaderdata')
   .then((response) => {
+    loader.style.display = 'inline-block';
     return response.json();
   })
   .then((data) => {
@@ -29,13 +30,15 @@ fetch('/leaderdata')
     interns = data
     display(interns)
     console.log(data);
+    
   })
   .catch((err) => {
     // Do something for an error here
   });
 
-
+  loader = document.getElementById('loading');
 function display(arr) {
+  
   var board = document.getElementById('leaderboard');
   board.innerHTML = `
      <th>S/N</th> 
@@ -53,6 +56,7 @@ function display(arr) {
   <td>Share</td>
   </tr>`;
   });
+  loader.style.display = 'none';
 }
 
 function dynamicsort(property, order) {
@@ -78,16 +82,38 @@ function dynamicsort(property, order) {
 
 var asc = document.getElementById('asc');
 asc.addEventListener('click', () => {
-  console.log('clicked');
-  display(interns.sort(dynamicsort('TOTAL POINTS', 'asc')));
-  
+  fetch('/leaderdata')
+    .then((response) => {
+      loader.style.display = 'inline-block';
+      return response.json();
+    })
+    .then((data) => {
+      // Work with JSON data here
+      interns = data;
+      display(interns.sort(dynamicsort('TOTAL POINTS', 'asc')));
+    })
+    .catch((err) => {
+      // Do something for an error here
+    });
 });
 
 var desc = document.getElementById('desc');
 desc.addEventListener('click', () => {
-  console.log('clicked');
-  display(interns.sort(dynamicsort('TOTAL POINTS', 'desc')));
-  topStyle();
+  fetch('/leaderdata')
+    .then((response) => {
+      loader.style.display = 'inline-block';
+      return response.json();
+    })
+    .then((data) => {
+      // Work with JSON data here
+      interns = data;
+      display(interns.sort(dynamicsort('TOTAL POINTS', 'desc')));
+      topStyle();
+      console.log(data);
+    })
+    .catch((err) => {
+      // Do something for an error here
+    });
 });
 
 function topStyle() {

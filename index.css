@@ -1,22 +1,61 @@
 body{
   text-align:center;
+  font-family: Arial, Verdana, Geneva, Tahoma, sans-serif;
 }
 tr{
   width:100px;
- 
   margin:270px;
-  border:1px solid black;
 }
+
 .row td{
   width:300px;
-  border:1px solid black;
 }
 .top{
-  background-color:green;
+  background-color:rgb(108, 255, 108);
+}
+td, th {
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
 }
 p{
   width:100px;
   background-color:#238478;
   padding:1rem;
   margin:1rem auto;
+  cursor: pointer;
+  transition: .3s ease-in-out;
+}
+p:hover{
+  background-color:#33dbc8;
+}
+.lds-dual-ring {
+  display: none;
+  width: 80px;
+  height: 80px;
+}
+.lds-dual-ring:after {
+  position: absolute;
+  top: 50%;
+  left: calc(50% - 32px);
+  content: " ";
+  display: block;
+  width: 64px;
+  height: 64px;
+  margin: 8px;
+  border-radius: 50%;
+  border: 6px solid rgb(78, 78, 78);
+  border-color: rgb(0, 0, 0) transparent rgb(0, 0, 0) transparent;
+  animation: lds-dual-ring 1.2s linear infinite;
+}
+@keyframes lds-dual-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
