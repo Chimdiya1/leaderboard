@@ -1,17 +1,3 @@
-    fetch('/')
-      .then((response) => {
-        return response.json();
-      })
-      .then((data) => {
-        // Work with JSON data here
-        console.log(data);
-      })
-      .catch((err) => {
-        // Do something for an error here
-      });
-
-
-
 var interns = [
   {
     name: 'Ben tom',
@@ -34,22 +20,40 @@ var interns = [
     points: 16,
   },
 ];
-function display() {
+fetch('/leaderdata')
+  .then((response) => {
+    return response.json();
+  })
+  .then((data) => {
+    // Work with JSON data here
+    interns = data
+    display(interns)
+    console.log(data);
+  })
+  .catch((err) => {
+    // Do something for an error here
+  });
+
+
+function display(arr) {
   var board = document.getElementById('leaderboard');
-  board.innerHTML = `<th>Name</th> 
+  board.innerHTML = `
+     <th>S/N</th> 
+     <th>Name</th> 
      <th>Slack id</th> 
      <th>Points</th>`;
-  interns.forEach((intern) => {
+  let no = 0;
+  arr.forEach((intern) => {
+    no++;
     board.innerHTML += `<tr class="row">
-  <td>${intern.name}</td>
-  <td>${intern.userName}</td>
-  <td>${intern.points}</td>
+  <td>${no}</td>
+  <td>${intern['FULL NAME']}</td>
+  <td>${intern.USERNAME}</td>
+  <td>${intern['TOTAL POINTS']}</td>
   <td>Share</td>
   </tr>`;
   });
 }
-
-display();
 
 function dynamicsort(property, order) {
   var sort_order = 1;
@@ -58,10 +62,12 @@ function dynamicsort(property, order) {
   }
   return function (a, b) {
     // a should come before b in the sorted order
-    if (a[property] < b[property]) {
+    if (Number.parseFloat(a[property]) < Number.parseFloat(b[property])) {
       return -1 * sort_order;
       // a should come after b in the sorted order
-    } else if (a[property] > b[property]) {
+    } else if (
+      Number.parseFloat(a[property]) > Number.parseFloat(b[property])
+    ) {
       return 1 * sort_order;
       // a and b are the same
     } else {
@@ -72,16 +78,22 @@ function dynamicsort(property, order) {
 
 var asc = document.getElementById('asc');
 asc.addEventListener('click', () => {
-  interns.sort(dynamicsort('points', 'asc'));
-  display();
-});
-var desc = document.getElementById('desc');
-desc.addEventListener('click', () => {
-  interns.sort(dynamicsort('points', 'desc'));
-  display();
+  console.log('clicked');
+  display(interns.sort(dynamicsort('TOTAL POINTS', 'asc')));
+  
 });
 
-var rows = document.getElementsByClassName('row');
-for (var i = 0; i < 3; i++) {
-  rows[i].classList.add('top');
+var desc = document.getElementById('desc');
+desc.addEventListener('click', () => {
+  console.log('clicked');
+  display(interns.sort(dynamicsort('TOTAL POINTS', 'desc')));
+  topStyle();
+});
+
+function topStyle() {
+  var rows = document.getElementsByClassName('row');
+  for (var i = 0; i < 3; i++) {
+    rows[i].classList.add('top');
+  }
 }
+
